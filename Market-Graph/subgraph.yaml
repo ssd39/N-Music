@@ -1,0 +1,18 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: near
+    name: Market
+    network: near-testnet
+    source:
+      account: "market4.nftmarketplace.testnet"
+      startBlock: 83148477
+    mapping:
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - NFT
+      receiptHandlers:
+        - handler: handleReceipt
+      file: ./src/mapping.ts

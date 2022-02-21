@@ -1,0 +1,9 @@
+type NFT @entity {
+  id: ID!
+  ownerid: String!
+  listed: Boolean!
+  price: Int
+  contractid: String!
+  tokenid: String!
+}
+#admin nearnft123
