@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <title>N-Music</title>
+        <meta charset="utf-8">
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <link href="css/input.css" rel="stylesheet" type="text/css" />
+        <link href="/css/js-snackbar.min.css" rel="stylesheet" type="text/css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="js/web3shelper.js" type="module"></script>
+        <script src="/js/js-snackbar.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/nearprotocol/near-api-js/dist/near-api-js.js"></script>
+        <script src='https://cdn.jsdelivr.net/npm/big.js@6.0.0/big.min.js'></script>
+    </head>
+    <body>
+        <div id="ppopup" class="ppopup" style="display: none;">
+            <div class="input_container">
+                <img src="./img/near.png" height="32px" width="32px">
+                <div class="col-3">
+                    <input class="effect-15" type="text" id="nft_amount" placeholder="Sell Price (In Near)">
+                    <span class="focus-bg"></span>
+                </div>
+            </div>
+            <div style="flex-direction: column; display: flex;justify-content: center; align-items: center; margin-top: 15px;">
+                <button class="login" id="submit_sell">Submit</button>
+                <img src="img/loader.gif" height="64px" width="64px" id="sell_loader_gif" style="display: none;">
+            </div>
+        </div>
+        <div id="ppopup1" class="ppopup" style="display: none;">
+            <div class="input_container">
+                <img src="./img/near.png" height="32px" width="32px">
+                <div class="col-3">
+                    <input class="effect-15" type="text" id="balance_amount" placeholder="Amount (In Near)">
+                    <span class="focus-bg"></span>
+                </div>
+            </div>
+            <div style="flex-direction: column; display: flex;justify-content: center; align-items: center; margin-top: 15px;">
+                <button class="login" id="add_balance">Add</button>
+                <img src="img/loader.gif" height="64px" width="64px" id="balance_loader_gif" style="display: none;">
+            </div>
+        </div>
+        <div id="record_frame" style="position: absolute; height: 100%; width: 100%;display: flex;justify-content: center; align-items: center; z-index: 2; display: none;"></div>
+        <!--<div style="margin: 15px;">
+            <button class="login">Mint</button>
+        </div>-->
+        <div style="display:flex; justify-content: space-between;">
+            <div style="margin-left: 25px;margin-top: 22px;margin-bottom: 30px; ">
+                <span style="font-size: x-large; font-family: neon;box-shadow: 0px 0px 10px 10px #0ff; background-color: #0ff;">🎼 Where words fail, music speaks</span>
+            </div>
+            <div style="display: flex; margin-right: 25px;margin-bottom: 30px;margin-top: 12px;align-items: center;">
+                <button class="login" id="acc_connect">Connect</button>
+                <span style='font: 15px/24px "Lato", Arial, sans-serif;color: white;font-weight: bold; font-size: x-large;' id="hi_acc"></span>
+                <button class="login" id="deply_contract" style="margin-left: 10px;">Deploy Contract</button>
+                <img id="verified_symbl" style="display: none;" height="32px" width="32px"  src="./img/checklist.png">
+            </div>
+        </div>
+        <div style="width: 20%; display:inline-block; margin-left: 22px;margin-right: 10px;margin-bottom: 10px; border-width: 2px;border-style: dotted; border-color: white;">
+            <div class="input_container">
+                <img src="./img/guitar.png" height="32px" width="32px">
+                <div class="col-3">
+                   
+                    <input class="effect-15" type="text" id="music_name" placeholder="Music Name">
+                    <span class="focus-bg"></span>
+                </div>
+            </div>
+            <div class="input_container">
+                <img src="./img/drum.png" height="32px" width="32px">
+                <div class="col-3">
+                    <input class="effect-15" type="text" id="short_description" placeholder="Short Description">
+                    <span class="focus-bg"></span>
+                </div>
+            </div>
+            <!--<div class="input_container">
+                <img src="./img/money-bag.png" height="32px" width="32px">
+                <div class="col-3">
+                    <input class="effect-15" type="text" placeholder="Price">
+                    <span class="focus-bg"></span>
+                </div>
+            </div>-->
+            <div ondrop="dropHandler(event);" ondragover="dragOverHandler(event);" style=" overflow:hidden;flex-direction: column; padding: 5px; display: flex; margin: 20px;border-radius: 5px;border-style:dashed; border-width: 1.2px; border-color: white;justify-content: center; align-items: center;padding-top: 10px; padding-bottom: 10px;">
+                <span style="font-family: neon;color: white;" id="drop_music_span">Drop Music Here</span>
+                <img src="img/music-note.png">
+            </div>
+            <div id="gif_holder" style="display: none;  justify-content: center; align-items: center;">
+                <img id="gif_holder_img" width="80%">
+            </div>
+            
+            <div style="flex-direction: column; display: flex;justify-content: center; align-items: center;margin: 15px;">
+                <button class="login" id="submit_music">Mint</button>
+                <img src="img/loader.gif" height="64px" width="64px" id="loader_gif" style="display: none;">
+            </div>
+        </div>
+        <div id="menu_" style="margin: 10px; margin-left: 15px; margin-right: 15px;display: flex;flex-direction: column; display: none;">
+            <span style='font: 15px/24px "Lato", Arial, sans-serif;color: white;font-weight: bold; font-size: larger;' id="drop_music_span">Your Collection:</span>
+            <div id="items_menu" class="menu_style">
+
+            </div>
+            <img src="img/loader.gif" height="64px" width="64px" style="align-self: center;" id="menu_loader_gif">
+        </div>
+        <script src="js/main.js"></script>
+    </body>
+</html>
